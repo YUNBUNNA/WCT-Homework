@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Color Selector</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #colorSelect {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Choose Your Theme Color</h1>
+    <select id="colorSelect">
+        <option value="#ffffff">White</option>
+        <option value="#f28b82">Red</option>
+        <option value="#fbbc04">Orange</option>
+        <option value="#fff475">Yellow</option>
+        <option value="#ccff90">Green</option>
+        <option value="#a7ffeb">Teal</option>
+        <option value="#d7aefb">Purple</option>
+        <option value="#fdcfe8">Pink</option>
+    </select>
+
+    <script>
+        // Reference to the select element
+        const colorSelect = document.getElementById('colorSelect');
+
+        // Function to set the background color
+        function setBackgroundColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+
+        // Check if there's a saved color in localStorage
+        window.onload = function() {
+            const savedColor = localStorage.getItem('bgColor');
+            if (savedColor) {
+                setBackgroundColor(savedColor);
+                colorSelect.value = savedColor; // Set the select option to match the saved color
+            }
+        };
+
+        // Event listener for color selection change
+        colorSelect.addEventListener('change', function() {
+            const selectedColor = colorSelect.value;
+            setBackgroundColor(selectedColor);
+            localStorage.setItem('bgColor', selectedColor); // Save the selected color in localStorage
+        });
+    </script>
+
+</body>
+</html>
